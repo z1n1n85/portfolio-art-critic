@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400;1,500&family=Unbounded:wght@400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./markdown.css";
+
+.font-unbounded,
+.font-unbounded * {
+  font-family: "Unbounded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+[data-theme="light"] .text-primary {
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+[data-theme="dark"] .text-primary {
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+[data-theme="light"] *::selection {
+  @apply bg-black text-white;
+}
+[data-theme="dark"] *::selection {
+  @apply bg-white text-black;
+}
+
+html {
+  overflow-x: hidden;
+}
+body {
+  @apply dark:bg-black dark:text-white;
+}
+
+.gradient-circle {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  top: -30vh;
+  left: 0px;
+  height: 140vh;
+  width: 100%;
+  opacity: 0.75;
+  filter: blur(40px);
+  background: radial-gradient(
+    circle,
+    rgb(229, 60, 60) 0%,
+    rgba(255, 180, 68, 0.8) 70%,
+    rgba(255, 180, 68, 0.1) 100%
+  );
+}
+.gradient-circle-bottom {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  bottom: -40px;
+  left: 0px;
+  height: 225px;
+  width: 100%;
+  opacity: 0.75;
+  filter: blur(40px);
+  background: radial-gradient(
+    circle,
+    rgb(229, 60, 60) 0%,
+    rgba(255, 180, 68, 0.8) 100%
+  );
+}
+
+.hover-shadow:hover{
+  box-shadow: 
+  -1px -1px 7px rgb(229, 60, 60),
+  1px 1px 7px rgba(255, 180, 68, 0.8);
+}
