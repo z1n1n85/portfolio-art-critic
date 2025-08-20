@@ -90,13 +90,13 @@ export default function Home() {
           <h2 className="title-font text-4xl text-bold">Проекты</h2>
           <h3 className="title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.academy_projects.map((project) => (
+            {data.academy_projects?.map((project) => (
               <p className="block w-full text-2xl text-center italic">{project.description}</p>
             ))}
           </div>
           <h3 className="title-font text-3xl text-bold">Творческая деятельность</h3>
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.art_projects.map((project, index) => (
+            {data.art_projects?.map((project, index) => (
               <WorkCard key={index} project={project} />
             ))}
           </div>
@@ -104,7 +104,7 @@ export default function Home() {
         <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
           <h2 className="title-font text-4xl text-bold">Навыки и опыт</h2>
           <div className="flex flex-col mt-5 tablet:m-10 gap-8">
-            {data.skills.map((skill, index) => (
+            {data.skills?.map((skill, index) => (
               <SkillItem key={index} skill={skill} />
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function Home() {
         <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
           <h2 className="title-font text-4xl text-bold">Принципы</h2>
           <div className="flex justify-center items-center mt-5 tablet:m-10 gap-4">
-            {data.principles.map((principle) => (
+            {data.principles?.map((principle) => (
               <p className="block w-full text-2xl text-center italic">{principle.description}</p>
             ))}
           </div>
