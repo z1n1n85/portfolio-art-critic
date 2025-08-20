@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Header from "../components/Header";
-import ServiceCard from "../components/ServiceCard";
+import SkillItem from "../components/SkillItem";
 import Socials from "../components/Socials";
 import WorkCard from "../components/WorkCard";
 import { useIsomorphicLayoutEffect } from "../utils";
@@ -59,21 +59,20 @@ export default function Home() {
     <div className="relative px-4">
       <Head>
         <link rel="icon" href="./favicon.ico"/>
-        <title>{data.title} </title>
+        <title>{data.title}</title>
       </Head>
       <div className="gradient-circle"></div>
       <div className="gradient-circle-bottom"></div>
-      <div className="container mx-auto mb-10">
+      <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-10">
         <Header
           handleStartScroll={handleStartScroll}
           handleWorkScroll={handleWorkScroll}
           handleAboutScroll={handleAboutScroll}
           handleContactScroll={handleContactScroll}
         />
-        <div className="-mt-28 h-screen flex flex-col justify-between align-baseline">
+        <section className="-mt-28 h-screen flex flex-col justify-between align-baseline">
           <h1
-            className="font-unbounded text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-7xl
-              p-1 tablet:p-2 w-full laptop:w-4/5 mt-36"
+            className="title-font text-center text-2xl tablet:text-6xl laptopl:text-8xl w-full mt-80"
           >
             <span ref={textOne} className="block">
               {data.header_first_line}
@@ -86,25 +85,40 @@ export default function Home() {
             </span>
           </h1>
           <Socials className="mt-2 laptop:mt-5" />
-        </div>
-        <div className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={workRef}>
-          <h2 className="font-unbounded text-4xl text-bold">Проекты</h2>
+        </section>
+        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={workRef}>
+          <h2 className="title-font text-4xl text-bold">Проекты</h2>
+          <h3 className="title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.projects.map((project, index) => (
+            {data.academy_projects.map((project) => (
+              <p className="block w-full text-2xl text-center italic">{project.description}</p>
+            ))}
+          </div>
+          <h3 className="title-font text-3xl text-bold">Творческая деятельность</h3>
+          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            {data.art_projects.map((project, index) => (
               <WorkCard key={index} project={project} />
             ))}
           </div>
-        </div>
-        <div className="mt-10 laptop:mt-28 p-2 laptop:p-0">
-          <h2 className="font-unbounded text-4xl text-bold">Навыки</h2>
-          <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
+        </section>
+        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
+          <h2 className="title-font text-4xl text-bold">Навыки и опыт</h2>
+          <div className="flex flex-col mt-5 tablet:m-10 gap-8">
             {data.skills.map((skill, index) => (
-              <ServiceCard key={index} skill={skill} />
+              <SkillItem key={index} skill={skill} />
             ))}
           </div>
-        </div>
-        <div className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={aboutRef}>
-          <h2 className="font-unbounded text-4xl text-bold">Обо мне</h2>
+        </section>
+        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
+          <h2 className="title-font text-4xl text-bold">Принципы</h2>
+          <div className="flex justify-center items-center mt-5 tablet:m-10 gap-4">
+            {data.principles.map((principle) => (
+              <p className="block w-full text-2xl text-center italic">{principle.description}</p>
+            ))}
+          </div>
+        </section>
+        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={aboutRef}>
+          <h2 className="title-font text-4xl text-bold">Обо мне</h2>
           <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0 pt-5">
             <p className="text-xl laptop:text-3xl laptop:col-span-2 self-center">
               {data.about}
@@ -115,12 +129,12 @@ export default function Home() {
               src={data.portrait}
             ></img>
           </div>
-        </div>
-        <div className="mt-5 laptop:mt-28 p-2 laptop:p-0" ref={contactRef}>
+        </section>
+        <section className="mt-5 laptop:mt-28 p-2 laptop:p-0" ref={contactRef}>
           <div>
-            <h2 className="font-unbounded text-4xl text-bold">Контакты</h2>
+            <h2 className="title-font text-4xl text-bold">Контакты</h2>
             <div className="mt-10">
-              <p className="font-unbounded text-3xl mob:text-5xl laptopl:text-7xl text-bold">
+              <p className="title-font text-3xl mob:text-5xl laptopl:text-7xl text-bold">
                 ДАВАЙТЕ
                 <br />
                 РАБОТАТЬ
@@ -132,7 +146,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

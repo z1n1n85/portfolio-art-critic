@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: test-repo
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
@@ -15,7 +15,7 @@ collections:
         - { label: "Header first line", name: "header_first_line", widget: "string"}
         - { label: "Header second line", name: "header_second_line", widget: "string"}
         - { label: "Header third line", name: "header_third_line", widget: "string"}
-        - { label: "About", name: "about", widget: "text"}
+        - { label: "About", name: "about", widget: "markdown"}
         - label: "Portrait"
           name: "portrait"
           widget: "image"
@@ -26,8 +26,13 @@ collections:
           fields:
             - { label: "Title", name: "title", widget: "string"}
             - { label: "Link", name: "link", widget: "string"}
-        - label: 'Projects'
-          name: "projects"
+        - label: 'Academy projects'
+          name: "academy_projects"
+          widget: list
+          fields:
+            - { label: "Discription", name: "description", widget: "text"}
+        - label: 'Art projects'
+          name: "art_projects"
           widget: list
           fields:
             - { label: "Title", name: "title", widget: "string"}
@@ -35,15 +40,6 @@ collections:
               name: "image"
               widget: "image"
               choose_url: true
-            - { label: "GitHub link", name: "github", widget: "string", required: false}
-            - { label: "Preview link", name: "preview", widget: "string", required: false}
-            - label: 'Stack'
-              name: "stack"
-              widget: list
-              required: false
-              fields:
-                - { label: "Name", name: "name", widget: "string"}
-                - { label: "Icon link", name: "icon", widget: "string"}
             - { label: "Discription", name: "description", widget: "text"}
         - label: 'Skills'
           name: "skills"
@@ -51,3 +47,9 @@ collections:
           fields:
             - { label: "Name", name: "name", widget: "string"}
             - { label: "Discription", name: "description", widget: "text"}
+        - label: 'Principles'
+          name: "principles"
+          widget: list
+          fields:
+            - { label: "Discription", name: "description", widget: "text"}
+            

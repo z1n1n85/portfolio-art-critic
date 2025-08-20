@@ -1,25 +1,15 @@
 ---
-title: z1n1n85
+title: maryhiston
 header_first_line: Здравствуйте!
-header_second_line: Меня зовут Зинин Илья,
-header_third_line: я веб-разработчик.
-about: На данный момент я являюсь фронтенд-разработчиком и работаю в веб-студии.
-  Мой стаж равен двум с половиной годам. При работе над проектами я ставлю своим
-  главным приоритетом создание качественного продукта, удобного пользователю и
-  выгодного заказчику. Помимо моей основной деятельноcти, в сферу моих интересов
-  входят дизайн, а также верстка и ручное изготовление книг
+header_second_line: Я Мария Хализова.
+header_third_line: Я искусствоведка.
+about: Я искусствоведка родом из Нижнего Новгорода.
 portrait: img/photo_2024-09-03_23-17-38.jpg
 socials:
-  - title: GitHub
-    link: https://github.com/z1n1n85
-  - title: Behance
-    link: https://www.behance.net/7e42a516
-  - title: HeadHunter
-    link: https://spb.hh.ru/resume/6fbf5fa8ff0d74f10f0039ed1f614e78506c66
   - title: Telegram
-    link: https://t.me/z1n1n85
+    link: https://t.me/mary_histon
   - title: Email
-    link: mailto:z1n1n85.work@gmail.com
+    link: mailto:mary_histon@mail.ru
 projects:
   - title: Этот сайт    ^_^
     image: img/portfolio.png
@@ -137,4 +127,8 @@ skills:
   - name: Soft
     description: Всегда пунктуален, исполнителен, открыт и вежлив в общении с
       коллегами и заказчиками
+principles:
+  - description: Готовность вкладывать время, силы и иные ресурсы, обусловленная ответственным подходом к искусствоведческому делу
+  - description: Педантичность, обусловленная нежеланием создавать второсортный продукт или способствовать его созданию
+  - description: Почтительность к коллегам, творцам, публике, обусловленная осознанием нашей общности в желании развития нашей культуры
 ---
