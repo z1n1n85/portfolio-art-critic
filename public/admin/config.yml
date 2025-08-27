@@ -12,6 +12,7 @@ collections:
       file: "content/home.md"
       fields:
         - { label: "Title", name: "title", widget: "string"}
+        - { label: "Meta description", name: "meta_description", widget: "string"}
         - { label: "Header first line", name: "header_first_line", widget: "string"}
         - { label: "Header second line", name: "header_second_line", widget: "string"}
         - { label: "Header third line", name: "header_third_line", widget: "string"}
@@ -40,7 +41,8 @@ collections:
               name: "image"
               widget: "image"
               choose_url: true
-            - { label: "Discription", name: "description", widget: "text"}
+              required: false
+            - { label: "Discription", name: "description", widget: "text", required: false}
         - label: 'Skills'
           name: "skills"
           widget: list
