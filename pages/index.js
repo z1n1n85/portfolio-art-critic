@@ -59,20 +59,22 @@ export default function Home() {
     <div className="relative px-4">
       <Head>
         <link rel="icon" href="./favicon.ico"/>
+        <meta name="description" content="{data.meta_description}"></meta>
         <title>{data.title}</title>
       </Head>
       <div className="gradient-circle"></div>
       <div className="gradient-circle-bottom"></div>
-      <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-10">
+      <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
         <Header
           handleStartScroll={handleStartScroll}
           handleWorkScroll={handleWorkScroll}
           handleAboutScroll={handleAboutScroll}
           handleContactScroll={handleContactScroll}
         />
-        <section className="-mt-28 h-screen flex flex-col justify-between align-baseline">
+        <section className="-mt-28 mb-8 laptop:mb-28 h-screen flex flex-col justify-between align-baseline">
           <h1
-            className="title-font text-center text-2xl tablet:text-6xl laptopl:text-8xl w-full mt-80"
+            className="title-font text-center text-2xl tablet:text-6xl laptopl:text-8xl w-full"
+            style={{ marginTop: 'calc(50vh - 1.5em)' }}
           >
             <span ref={textOne} className="block">
               {data.header_first_line}
@@ -84,56 +86,56 @@ export default function Home() {
               {data.header_third_line}
             </span>
           </h1>
-          <Socials className="mt-2 laptop:mt-5" />
+          <Socials />
         </section>
-        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={workRef}>
-          <h2 className="title-font text-4xl text-bold">Проекты</h2>
-          <h3 className="title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
-          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={workRef}>
+          <h2 className="mb-8 laptop:mb-16 title-font text-6xl text-bold">Проекты</h2>
+          <h3 className="mb-4 laptop:mb-8  title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
+          <div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.academy_projects?.map((project) => (
-              <p className="block w-full text-2xl text-center italic">{project.description}</p>
+              <p className="block w-full text-xl">{project.description}</p>
             ))}
           </div>
-          <h3 className="title-font text-3xl text-bold">Творческая деятельность</h3>
-          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+          <h3 className="mb-4 laptop:mb-8 title-font text-3xl text-bold">Творческая деятельность</h3>
+          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.art_projects?.map((project, index) => (
               <WorkCard key={index} project={project} />
             ))}
           </div>
         </section>
-        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
-          <h2 className="title-font text-4xl text-bold">Навыки и опыт</h2>
-          <div className="flex flex-col mt-5 tablet:m-10 gap-8">
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
+          <h2 className="mb-4 title-font text-4xl text-bold">Навыки и опыт</h2>
+          <div className="flex flex-col tablet:m-10 gap-8">
             {data.skills?.map((skill, index) => (
               <SkillItem key={index} skill={skill} />
             ))}
           </div>
         </section>
-        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0">
-          <h2 className="title-font text-4xl text-bold">Принципы</h2>
-          <div className="flex justify-center items-center mt-5 tablet:m-10 gap-4">
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
+          <h2 className="mb-4 title-font text-4xl text-bold">Принципы</h2>
+          <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
             {data.principles?.map((principle) => (
               <p className="block w-full text-2xl text-center italic">{principle.description}</p>
             ))}
           </div>
         </section>
-        <section className="mt-10 laptop:mt-28 p-2 laptop:p-0" ref={aboutRef}>
-          <h2 className="title-font text-4xl text-bold">Обо мне</h2>
-          <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0 pt-5">
-            <p className="text-xl laptop:text-3xl laptop:col-span-2 self-center">
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={aboutRef}>
+          <h2 className="pb-4 title-font text-4xl text-bold">Обо мне</h2>
+          <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0">
+            <p className="text-l laptop:text-xl laptop:col-span-2 self-center">
               {data.about}
             </p>
             <img
               alt={data.title}
-              className="w-auto h-full max-h-96 object-cover row-start-1 laptop:row-start-auto"
+              className="w-full h-full max-h-96 object-contain row-start-1 laptop:row-start-auto"
               src={data.portrait}
             ></img>
           </div>
         </section>
-        <section className="mt-5 laptop:mt-28 p-2 laptop:p-0" ref={contactRef}>
+        <section className="p-2 laptop:p-0" ref={contactRef}>
           <div>
-            <h2 className="title-font text-4xl text-bold">Контакты</h2>
-            <div className="mt-10">
+            <h2 className="mb-8 title-font text-4xl text-bold">Контакты</h2>
+            <div className="mb-8">
               <p className="title-font text-3xl mob:text-5xl laptopl:text-7xl text-bold">
                 ДАВАЙТЕ
                 <br />
@@ -141,7 +143,7 @@ export default function Home() {
                 <br />
                 ВМЕСТЕ
               </p>
-              <div className="mt-10">
+              <div>
                 <Socials />
               </div>
             </div>
