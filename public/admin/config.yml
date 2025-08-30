@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: test-repo # git-gateway
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
@@ -31,7 +31,10 @@ collections:
           name: "academy_projects"
           widget: list
           fields:
+            - { label: "Slug", name: "slug", widget: "text"}
+            - { label: "Title", name: "title", widget: "text"}
             - { label: "Discription", name: "description", widget: "text"}
+            - { label: "Text", name: "text", widget: "markdown"}
         - label: 'Art projects'
           name: "art_projects"
           widget: list

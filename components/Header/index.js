@@ -8,6 +8,7 @@ const Header = ({
   handleWorkScroll,
   handleAboutScroll,
   handleContactScroll,
+  isHomePage = true
 }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -49,8 +50,12 @@ const Header = ({
                 ${mounted && "bg-black/10"} rounded-xl mt-1`}
             >
               <div className="flex justify-end flex-col">
-                <Button onClick={handleWorkScroll}>Проекты</Button>
-                <Button onClick={handleAboutScroll}>Обо мне</Button>
+                {isHomePage && (
+                  <>
+                    <Button onClick={handleWorkScroll}>Проекты</Button>
+                    <Button onClick={handleAboutScroll}>Обо мне</Button>
+                  </>
+                )}
                 <Button onClick={handleContactScroll}>Контакты</Button>
               </div>
             </Popover.Panel>
@@ -72,7 +77,12 @@ const Header = ({
           </svg>
         </a>
         <div className="flex">
-          <Button onClick={handleWorkScroll}>Проекты</Button>
+          {isHomePage && (
+            <>
+              <Button onClick={handleWorkScroll}>Проекты</Button>
+              <Button onClick={handleAboutScroll}>Обо мне</Button>
+            </>
+          )}
           <Button onClick={handleAboutScroll}>Обо мне</Button>
           <Button onClick={handleContactScroll}>Контакты</Button>
         </div>

@@ -1,3 +1,4 @@
+import "../public/fonts/Bergamasco/import.css";
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 

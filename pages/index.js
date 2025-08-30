@@ -7,6 +7,8 @@ import { useIsomorphicLayoutEffect } from "../utils";
 import { stagger } from "../animations";
 import Head from "next/head";
 import { attributes as data } from "../content/home.md";
+import Markdown from 'react-markdown'
+import Link from 'next/link';
 
 export default function Home() {
   // Ref
@@ -59,7 +61,7 @@ export default function Home() {
     <div className="relative px-4">
       <Head>
         <link rel="icon" href="./favicon.ico"/>
-        <meta name="description" content="{data.meta_description}"></meta>
+        <meta name="description" content={data.meta_description}></meta>
         <title>{data.title}</title>
       </Head>
       <div className="gradient-circle"></div>
@@ -88,18 +90,37 @@ export default function Home() {
           </h1>
           <Socials />
         </section>
-        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={workRef}>
-          <h2 className="mb-8 laptop:mb-16 title-font text-6xl text-bold">Проекты</h2>
-          <h3 className="mb-4 laptop:mb-8  title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
-          <div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.academy_projects?.map((project) => (
-              <p className="block w-full text-xl">{project.description}</p>
-            ))}
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={aboutRef}>
+          <h2 className="pb-4 title-font text-4xl text-bold">Обо мне</h2>
+          <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0">
+            <div className="text-l laptop:text-xl laptop:col-span-2 self-center">
+              <Markdown
+                components={{
+                  ul(props) {
+                    const {node, ...rest} = props
+                    return <ul className="list-disc ml-8 mb-2" {...rest} />
+                  },
+                  p(props) {
+                    const {node, ...rest} = props
+                    return <p className="mb-2" {...rest} />
+                  }
+                }}
+              >
+                {data.about}
+              </Markdown>
+            </div>
+            <img
+              alt={data.title}
+              className="w-full h-full max-h-[500px] object-contain row-start-1 laptop:row-start-auto"
+              src={data.portrait}
+            ></img>
           </div>
-          <h3 className="mb-4 laptop:mb-8 title-font text-3xl text-bold">Творческая деятельность</h3>
-          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.art_projects?.map((project, index) => (
-              <WorkCard key={index} project={project} />
+        </section>
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
+          <h2 className="mb-4 title-font text-4xl text-bold">Принципы</h2>
+          <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
+            {data.principles?.map((principle) => (
+              <p className="block w-full text-xl text-center italic">{principle.description}</p>
             ))}
           </div>
         </section>
@@ -111,25 +132,32 @@ export default function Home() {
             ))}
           </div>
         </section>
-        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
-          <h2 className="mb-4 title-font text-4xl text-bold">Принципы</h2>
-          <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
-            {data.principles?.map((principle) => (
-              <p className="block w-full text-2xl text-center italic">{principle.description}</p>
-            ))}
-          </div>
-        </section>
-        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={aboutRef}>
-          <h2 className="pb-4 title-font text-4xl text-bold">Обо мне</h2>
-          <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0">
-            <p className="text-l laptop:text-xl laptop:col-span-2 self-center">
-              {data.about}
-            </p>
-            <img
-              alt={data.title}
-              className="w-full h-full max-h-96 object-contain row-start-1 laptop:row-start-auto"
-              src={data.portrait}
-            ></img>
+        <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={workRef}>
+          <h2 className="mb-8 laptop:mb-16 title-font text-6xl text-bold">Проекты</h2>
+          <h3 className="mb-4 laptop:mb-8  title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
+<div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-8">
+  {data.academy_projects?.map((project) => (
+    <Link 
+      key={project.slug} 
+      href={`/projects/${project.slug}`}
+      className="block w-full text-l hover:text-pink-700 transition-colors"
+    >
+      {project.title}
+    </Link>
+  ))}
+</div>
+          <h3 className="mb-4 laptop:mb-8 title-font text-3xl text-bold">Творческая деятельность</h3>
+          <div className="grid grid-cols-1 laptop:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-4">
+              {data.art_projects?.filter((_, index) => index % 2 === 0).map((project, index) => (
+                <WorkCard key={index * 2} project={project} />
+              ))}
+            </div> 
+            <div className="flex flex-col gap-4">
+              {data.art_projects?.filter((_, index) => index % 2 === 1).map((project, index) => (
+                <WorkCard key={index * 2 + 1} project={project} />
+              ))}
+            </div>
           </div>
         </section>
         <section className="p-2 laptop:p-0" ref={contactRef}>
