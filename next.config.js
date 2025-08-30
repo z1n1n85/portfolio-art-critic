@@ -1,6 +1,6 @@
 module.exports = {
     output: "export",
-    assetPrefix: "./",
+    assetPrefix: "/",
     reactStrictMode: true,
     webpack: (cfg) => {
     cfg.module.rules.push({

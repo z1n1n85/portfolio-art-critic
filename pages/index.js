@@ -135,17 +135,17 @@ export default function Home() {
         <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={workRef}>
           <h2 className="mb-8 laptop:mb-16 title-font text-6xl text-bold">Проекты</h2>
           <h3 className="mb-4 laptop:mb-8  title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
-<div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-8">
-  {data.academy_projects?.map((project) => (
-    <Link 
-      key={project.slug} 
-      href={`/projects/${project.slug}`}
-      className="block w-full text-l hover:text-pink-700 transition-colors"
-    >
-      {project.title}
-    </Link>
-  ))}
-</div>
+          <div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-8">
+            {data.academy_projects?.map((project) => (
+              <Link 
+                key={project.slug} 
+                href={`/projects/${project.slug}`}
+                className="block w-full text-l hover:text-pink-700 transition-colors"
+              >
+                {project.title}
+              </Link>
+            ))}
+          </div>
           <h3 className="mb-4 laptop:mb-8 title-font text-3xl text-bold">Творческая деятельность</h3>
           <div className="grid grid-cols-1 laptop:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
