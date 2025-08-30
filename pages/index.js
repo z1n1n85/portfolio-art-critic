@@ -61,6 +61,8 @@ export default function Home() {
     <div className="relative px-4">
       <Head>
         <link rel="icon" href="./favicon.ico"/>
+        <meta property="og:title" content={data.title} />
+        <meta property="og:description" content={data.meta_description} />
         <meta name="description" content={data.meta_description}></meta>
         <title>{data.title}</title>
       </Head>
