@@ -33,6 +33,7 @@ collections:
           fields:
             - { label: "Slug", name: "slug", widget: "text"}
             - { label: "Title", name: "title", widget: "text"}
+            - { label: "Meta description", name: "meta_description", widget: "text"}
             - { label: "Discription", name: "description", widget: "text"}
             - { label: "Text", name: "text", widget: "markdown"}
         - label: 'Art projects'

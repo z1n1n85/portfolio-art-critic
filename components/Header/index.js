@@ -50,11 +50,19 @@ const Header = ({
                 ${mounted && "bg-black/10"} rounded-xl mt-1`}
             >
               <div className="flex justify-end flex-col">
-                {isHomePage && (
+                {isHomePage ? (
                   <>
                     <Button onClick={handleWorkScroll}>Проекты</Button>
                     <Button onClick={handleAboutScroll}>Обо мне</Button>
                   </>
+                ) : (
+                  <a
+                    href="/"
+                    className="title-font font-medium transition-all ease-out duration-300
+                    hover:scale-105 active:scale-100 cursor-pointer mob:p-2 laptop:p-0"
+                  >
+                    На главную
+                  </a>
                 )}
                 <Button onClick={handleContactScroll}>Контакты</Button>
               </div>
@@ -77,13 +85,20 @@ const Header = ({
           </svg>
         </a>
         <div className="flex">
-          {isHomePage && (
+          {isHomePage ? (
             <>
               <Button onClick={handleWorkScroll}>Проекты</Button>
               <Button onClick={handleAboutScroll}>Обо мне</Button>
             </>
+          ) : (
+            <a
+              href="/"
+              className="title-font font-medium transition-all ease-out duration-300
+              hover:scale-105 active:scale-100 cursor-pointer mob:p-2 laptop:p-0"
+            >
+              На главную
+            </a>
           )}
-          <Button onClick={handleAboutScroll}>Обо мне</Button>
           <Button onClick={handleContactScroll}>Контакты</Button>
         </div>
       </div>

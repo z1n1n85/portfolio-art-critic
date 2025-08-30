@@ -47,7 +47,7 @@ export default function ProjectPage() {
         <Header
           handleStartScroll={handleStartScroll}
           handleContactScroll={handleContactScroll}
-          showWorkLink={false} // Добавьте этот пропс в Header компонент
+          isHomePage={false} // Добавьте этот пропс в Header компонент
         />
         
         <section className="mt-8 mb-16">
@@ -118,4 +118,33 @@ export default function ProjectPage() {
       </div>
     </div>
   );
+}
+
+// Генерируем статические пути во время сборки
+export async function getStaticPaths() {
+  const { attributes: data } = require('../../content/home.md');
+  
+  // Получаем все slugs из академических проектов
+  const paths = data.academy_projects?.map((project) => ({
+    params: { slug: project.slug },
+  })) || [];
+
+  return {
+    paths,
+    fallback: false, // false означает, что несуществующие пути вернут 404
+  };
+}
+
+// Получаем данные для каждого пути
+export async function getStaticProps({ params }) {
+  const { attributes: data } = require('../../content/home.md');
+  
+  // Находим проект по slug
+  const project = data.academy_projects?.find(p => p.slug === params.slug);
+
+  return {
+    props: {
+      project: project || null,
+    },
+  };
 }
