@@ -4,6 +4,7 @@ import Socials from "../../components/Socials";
 import { attributes as homeData } from "../../content/home.md";
 import Markdown from 'react-markdown';
 import Head from "next/head";
+import BackgroundGradient from "../../components/BackgroundGradient";
 
 export default function ProjectPage() {
   const router = useRouter();
@@ -41,8 +42,6 @@ export default function ProjectPage() {
         <meta name="description" content={project.meta_description || homeData.meta_description}></meta>
         <title>{project.title || homeData.title}</title>
       </Head>
-      <div className="gradient-circle"></div>
-      <div className="gradient-circle-bottom"></div>
       <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
         <Header
           handleStartScroll={handleStartScroll}
@@ -116,6 +115,7 @@ export default function ProjectPage() {
           </div>
         </section>
       </div>
+      <BackgroundGradient/>
     </div>
   );
 }

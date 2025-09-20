@@ -5,7 +5,7 @@ const WorkCard = ({ project }) => {
         {project.image && 
           <img
             alt={project.title}
-            className="w-[50%] h-auto object-contain mx-auto"
+            className="w-full tablet:w-[50%] h-auto object-contain mx-auto"
             src={project.image}
           ></img>
         }

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SkillItem from "../components/SkillItem";
 import Socials from "../components/Socials";
 import WorkCard from "../components/WorkCard";
+import BackgroundGradient from "../components/BackgroundGradient";
 import { useIsomorphicLayoutEffect } from "../utils";
 import { stagger } from "../animations";
 import Head from "next/head";
@@ -66,8 +67,6 @@ export default function Home() {
         <meta name="description" content={data.meta_description}></meta>
         <title>{data.title}</title>
       </Head>
-      <div className="gradient-circle"></div>
-      <div className="gradient-circle-bottom"></div>
       <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
         <Header
           handleStartScroll={handleStartScroll}
@@ -122,7 +121,7 @@ export default function Home() {
           <h2 className="mb-8 title-font text-4xl text-bold">Принципы</h2>
           <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
             {data.principles?.map((principle) => (
-              <p className="block w-full text-xl text-center italic">{principle.description}</p>
+              <p className="block w-full text-l laptop:text-xl tablet:text-center italic">{principle.description}</p>
             ))}
           </div>
         </section>
@@ -135,8 +134,8 @@ export default function Home() {
           </div>
         </section>
         <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={workRef}>
-          <h2 className="mb-8 laptop:mb-16 title-font text-6xl text-bold">Проекты</h2>
-          <h3 className="mb-4 laptop:mb-8  title-font text-3xl text-bold">Искуствоведческая деятельность</h3>
+          <h2 className="mb-8 laptop:mb-16 title-font text-4xl laptop:text-6xl text-bold">Проекты</h2>
+          <h3 className="mb-4 laptop:mb-8  title-font text-2xl laptop:text-3xl text-bold">Искуствоведческая деятельность</h3>
           <div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-8">
             {data.academy_projects?.map((project) => (
               <Link 
@@ -152,7 +151,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <h3 className="mb-4 laptop:mb-8 title-font text-3xl text-bold">Творческая деятельность</h3>
+          <h3 className="mb-4 laptop:mb-8 title-font text-2xl laptop:text-3xl text-bold">Творческая деятельность</h3>
           <div className="grid grid-cols-1 laptop:grid-cols-2 gap-4">
             <div className="flex flex-col gap-4">
               {data.art_projects?.filter((_, index) => index % 2 === 0).map((project, index) => (
@@ -184,6 +183,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <BackgroundGradient/>
     </div>
   );
 }

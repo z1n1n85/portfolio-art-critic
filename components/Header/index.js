@@ -47,7 +47,7 @@ const Header = ({
                   <Popover.Button>
                     <img
                       className="h-5"
-                      src={`./images/${
+                      src={`/images/${
                         !open
                           ? "menu-white.svg"
                           : "cancel-white.svg"
