@@ -37,7 +37,7 @@ export default function ProjectPage() {
   return (
     <div className="relative px-4">
       <Head>
-        <link rel="icon" href="./favicon.ico"/>
+        <link rel="icon" href="/favicon.ico"/>
         <meta name="description" content={project.meta_description || homeData.meta_description}></meta>
         <title>{project.title || homeData.title}</title>
       </Head>
@@ -50,9 +50,9 @@ export default function ProjectPage() {
           isHomePage={false} // Добавьте этот пропс в Header компонент
         />
         
-        <section className="mt-8 mb-16">
-          <div className="text-center mb-8">
-            <h1 className="title-font text-4xl tablet:text-6xl mb-8">
+        <section className="mt-16 mb-16">
+          <div className="mb-8">
+            <h1 className="title-font text-3xl tablet:text-5xl mb-4">
               {project.title}
             </h1>
             {project.description && (

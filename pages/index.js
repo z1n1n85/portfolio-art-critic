@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="relative px-4">
       <Head>
-        <link rel="icon" href="./favicon.ico"/>
+        <link rel="icon" href="/favicon.ico"/>
         <meta property="og:title" content={data.title} />
         <meta property="og:description" content={data.meta_description} />
         <meta name="description" content={data.meta_description}></meta>
@@ -93,7 +93,7 @@ export default function Home() {
           <Socials />
         </section>
         <section className="mb-8 laptop:mb-28 p-2 laptop:p-0" ref={aboutRef}>
-          <h2 className="pb-4 title-font text-4xl text-bold">Обо мне</h2>
+          <h2 className="pb-8 title-font text-4xl text-bold">Обо мне</h2>
           <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0">
             <div className="text-l laptop:text-xl laptop:col-span-2 self-center">
               <Markdown
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
         </section>
         <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
-          <h2 className="mb-4 title-font text-4xl text-bold">Принципы</h2>
+          <h2 className="mb-8 title-font text-4xl text-bold">Принципы</h2>
           <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
             {data.principles?.map((principle) => (
               <p className="block w-full text-xl text-center italic">{principle.description}</p>
@@ -127,7 +127,7 @@ export default function Home() {
           </div>
         </section>
         <section className="mb-8 laptop:mb-28 p-2 laptop:p-0">
-          <h2 className="mb-4 title-font text-4xl text-bold">Навыки и опыт</h2>
+          <h2 className="mb-8 title-font text-4xl text-bold">Навыки и опыт</h2>
           <div className="flex flex-col tablet:m-10 gap-8">
             {data.skills?.map((skill, index) => (
               <SkillItem key={index} skill={skill} />
@@ -142,8 +142,12 @@ export default function Home() {
               <Link 
                 key={project.slug} 
                 href={`/projects/${project.slug}`}
-                className="block w-full text-l hover:text-pink-700 transition-colors"
+                className="flex items-center w-full text-l hover:text-pink-700 transition-colors"
+                target="_blank"
               >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="flex-shrink-0 size-6 me-2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
                 {project.title}
               </Link>
             ))}
