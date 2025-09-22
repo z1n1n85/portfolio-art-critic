@@ -32,41 +32,11 @@ html {
 }
 body {
   @apply dark:bg-black dark:text-white;
+  background-color: #000;
 }
 
-.gradient-circle {
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-  top: -30vh;
-  left: 0px;
-  height: 140vh;
-  width: 100%;
-  opacity: 0.75;
-  filter: blur(40px);
-  background: radial-gradient(
-    circle,
-    #650000 0%,
-    #3a0101cc 65%,
-    #ef58c3 100%
-  );
-}
-.gradient-circle-bottom {
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-  bottom: -40px;
-  left: 0px;
-  height: 225px;
-  width: 100%;
-  opacity: 0.75;
-  filter: blur(40px);
-  background: radial-gradient(
-    circle,
-    #650000 0%,
-    #3a0101cc 65%,
-    #ef58c3 100%
-  );
+.background-root {
+  min-height: 100vh;
 }
 
 .hover-shadow:hover{

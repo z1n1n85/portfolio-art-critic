@@ -17,30 +17,41 @@ const Header = ({
   }, []);
   return (
     <>
-      <Popover className="sticky block tablet:hidden mt-5 top-4 z-10">
+      <div className="fixed bottom-4 left-4 backdrop-blur-md bg-black/10 rounded-xl h-10 w-10 flex items-center justify-center">
+        <a
+          onClick={handleStartScroll}
+          className="title-font p-2 laptop:p-0 link transition-all ease-out
+          duration-300 hover:scale-105 active:scale-100 cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
+          </svg>
+        </a>
+      </div>
+      <Popover className="sticky block tablet:hidden mt-5 top-4 z-10 mx-4">
         {({ open }) => (
           <>
             <div className={`flex items-center justify-between p-2 px-4 laptop:p-0 
             backdrop-blur-md ${mounted && "bg-black/10"} rounded-xl`}>
               <div className="flex items-center gap-8">
-                <a
+                {(isHomePage)
+                ? (                
+                <p
                   onClick={handleStartScroll}
-                  className="title-font p-2 laptop:p-0 link transition-all ease-out
-                  duration-300 hover:scale-105 active:scale-100 cursor-pointer"
+                  className="p-2 laptop:p-0 link"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                  </svg>
-                </a>
-                {!isHomePage && (
+                  Мария Хализова
+                </p>
+                ) : (
                   <Link
                     className="p-2 laptop:p-0 link transition-all ease-out
                     duration-300 hover:scale-105 active:scale-100 cursor-pointer"
                     href={'/'}
                   >
-                    На главную
+                    Мария Хализова
                   </Link>
-                )}
+                )
+                }
               </div>
               <div className="flex items-center">
                 {mounted && (
@@ -75,29 +86,29 @@ const Header = ({
         )}
       </Popover>
       <div
-        className={`mt-10 hidden flex-row items-center justify-between sticky 
+        className={`mt-10 hidden flex-row items-center justify-between sticky mx-4
           backdrop-blur-md ${mounted && "bg-black/10"}
           rounded-2xl px-4 dark:text-white top-4 z-10 tablet:flex`}
       >
         <div className="flex items-center gap-8">
-          <a
+          {(isHomePage)
+          ? (                
+          <p
             onClick={handleStartScroll}
-            className="title-font p-2 laptop:p-0 link transition-all ease-out
-            duration-300 hover:scale-105 active:scale-100 cursor-pointer"
+            className="p-2 laptop:p-0 link"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-          </a>
-          {!isHomePage && (
+            Мария Хализова
+          </p>
+          ) : (
             <Link
               className="p-2 laptop:p-0 link transition-all ease-out
               duration-300 hover:scale-105 active:scale-100 cursor-pointer"
               href={'/'}
             >
-              На главную
+              Мария Хализова
             </Link>
-          )}
+          )
+          }
         </div>
         <div className="flex">
           {isHomePage && (
