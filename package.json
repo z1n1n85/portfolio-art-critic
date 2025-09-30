@@ -27,10 +27,11 @@
     "react": "^19.0.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "^5.0.0",
     "react-markdown": "^8.0.3",
+    "react-scripts": "^5.0.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^8.3.4",
+    "rehype-raw": "^7.0.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "styled-components": "^5.3.5",
@@ -41,13 +42,13 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-react": "^7.24.7",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
     "frontmatter-markdown-loader": "^3.7.0",
-    "tw-animate-css": "^1.3.7",
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
     "loader-utils": "3.2.1",
+    "tw-animate-css": "^1.3.7",
     "typescript": "5.7.2"
   }
 }

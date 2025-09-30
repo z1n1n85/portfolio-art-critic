@@ -129,7 +129,7 @@ export default function Home() {
             {data.academy_projects?.map((project) => (
               <Link 
                 key={project.slug} 
-                href={`/projects/${project.slug}`}
+                href={`/${project.slug}`}
                 className="flex items-center w-full text-l hover:-translate-y-1 transition-all"
                 target="_blank"
               >

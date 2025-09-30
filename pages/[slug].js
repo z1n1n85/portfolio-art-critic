@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
-import Socials from "../../components/Socials";
-import { attributes as homeData } from "../../content/home.md";
+import Header from "/components/Header";
+import Socials from "/components/Socials";
+import { attributes as homeData } from "/content/home.md";
 import Markdown from 'react-markdown';
+import rehypeRaw from "rehype-raw";
 import Head from "next/head";
-import BackgroundGradient from "../../components/BackgroundGradient";
+import BackgroundGradient from "/components/BackgroundGradient";
 
 export default function ProjectPage() {
   const router = useRouter();
@@ -62,33 +63,42 @@ export default function ProjectPage() {
           </div>
 
           {project.image && (
-            <div className="mb-8">
+            <div className="mb-8 flex justify-items-center">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full max-h-96 object-cover rounded-lg"
+                className="w-full max-h-96 object-contain rounded-3xl"
               />
             </div>
           )}
 
-          <div className="prose prose-lg max-w-none dark:prose-invert">
+          <div className="prose prose-lg max-w-none dark:prose-invert px-36">
             <Markdown
+              rehypePlugins={[rehypeRaw]}
               components={{
                 ul(props) {
                   const {node, ...rest} = props
                   return <ul className="list-disc ml-8 mb-4" {...rest} />
                 },
+                ol(props) {
+                  const {node, ...rest} = props
+                  return <ol className="list-decimal ml-8 mb-4" {...rest} />
+                },
                 p(props) {
                   const {node, ...rest} = props
                   return <p className="mb-4" {...rest} />
                 },
-                h2(props) {
+                h1(props) {
                   const {node, ...rest} = props
                   return <h2 className="text-2xl font-bold mb-4 mt-8" {...rest} />
                 },
-                h3(props) {
+                h2(props) {
                   const {node, ...rest} = props
                   return <h3 className="text-xl font-bold mb-3 mt-6" {...rest} />
+                },
+                h3(props) {
+                  const {node, ...rest} = props
+                  return <h4 className="text-l font-bold mb-3 mt-6" {...rest} />
                 }
               }}
             >
@@ -122,7 +132,7 @@ export default function ProjectPage() {
 
 // Генерируем статические пути во время сборки
 export async function getStaticPaths() {
-  const { attributes: data } = require('../../content/home.md');
+  const { attributes: data } = require('/content/home.md');
   
   // Получаем все slugs из академических проектов
   const paths = data.academy_projects?.map((project) => ({
@@ -137,7 +147,7 @@ export async function getStaticPaths() {
 
 // Получаем данные для каждого пути
 export async function getStaticProps({ params }) {
-  const { attributes: data } = require('../../content/home.md');
+  const { attributes: data } = require('/content/home.md');
   
   // Находим проект по slug
   const project = data.academy_projects?.find(p => p.slug === params.slug);
