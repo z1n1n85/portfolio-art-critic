@@ -72,7 +72,7 @@ export default function ProjectPage() {
             </div>
           )}
           <hr className="mb-4"></hr>
-          <div className="prose prose-lg max-w-none dark:prose-invert px-36">
+          <div className="prose prose-lg max-w-none dark:prose-invert tablet:px-28 desktop:px-36 break-words">
             <Markdown
               rehypePlugins={[rehypeRaw]}
               components={{
