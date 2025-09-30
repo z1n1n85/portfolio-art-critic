@@ -32,6 +32,11 @@ collections:
           widget: list
           fields:
             - { label: "Slug", name: "slug", widget: "text"}
+            - label: "Image"
+              name: "image"
+              widget: "image"
+              choose_url: true
+              required: false
             - { label: "Title", name: "title", widget: "text"}
             - { label: "Meta description", name: "meta_description", widget: "text"}
             - { label: "Discription", name: "description", widget: "text"}
