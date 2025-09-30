@@ -67,11 +67,11 @@ export default function ProjectPage() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full max-h-96 object-contain rounded-3xl"
+                className="w-full max-h-96 object-contain rounded-3xl overflow-hidden"
               />
             </div>
           )}
-          <hr></hr>
+          <hr className="mb-4"></hr>
           <div className="prose prose-lg max-w-none dark:prose-invert px-36">
             <Markdown
               rehypePlugins={[rehypeRaw]}
