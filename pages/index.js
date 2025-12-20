@@ -49,13 +49,14 @@ export default function Home() {
 
   return (
     <div className="relative px-4 backgound-root">
-      <Head>
-        <link rel="icon" href="/favicon.ico"/>
-        <meta property="og:title" content={data.title} />
-        <meta property="og:description" content={data.meta_description} />
-        <meta name="description" content={data.meta_description}></meta>
-        <title>{data.title}</title>
-      </Head>
+    <Head>
+      <link rel="icon" href="/favicon.ico" />
+      <meta property="og:title" content={data.title} />
+      <meta property="og:description" content={data.meta_description} />
+      <meta property="og:image" content={data.portrait} />
+      <meta name="description" content={data.meta_description} />
+      <title>{data.title}</title>
+    </Head>
       <div className="relative max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
       <Header
         handleStartScroll={handleStartScroll}
