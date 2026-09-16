@@ -40,7 +40,7 @@ const Header = ({
                   onClick={handleStartScroll}
                   className="p-2 laptop:p-0 link"
                 >
-                  Мария Хализова
+                  Мария Зинина-Хализова
                 </p>
                 ) : (
                   <Link
@@ -48,7 +48,7 @@ const Header = ({
                     duration-300 hover:scale-105 active:scale-100 cursor-pointer"
                     href={'/'}
                   >
-                    Мария Хализова
+                    Мария Зинина-Хализова
                   </Link>
                 )
                 }
@@ -97,7 +97,7 @@ const Header = ({
             onClick={handleStartScroll}
             className="p-2 laptop:p-0 link"
           >
-            Мария Хализова
+            Мария Зинина-Хализова
           </p>
           ) : (
             <Link
@@ -105,7 +105,7 @@ const Header = ({
               duration-300 hover:scale-105 active:scale-100 cursor-pointer"
               href={'/'}
             >
-              Мария Хализова
+              Мария Зинина-Хализова
             </Link>
           )
           }
