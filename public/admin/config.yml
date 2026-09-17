@@ -40,7 +40,14 @@ collections:
             - { label: "Title", name: "title", widget: "text"}
             - { label: "Meta description", name: "meta_description", widget: "text"}
             - { label: "Discription", name: "description", widget: "text"}
-            - { label: "Text", name: "text", widget: "markdown"}
+            - { label: "Text", name: "text", widget: "markdown", required: false}
+            - label: "File"
+              name: "file"
+              widget: "file"
+              required: false
+              allow_multiple: false
+              media_folder: "/public/files"
+              public_folder: "/files"
         - label: 'Art projects'
           name: "art_projects"
           widget: list
@@ -52,15 +59,20 @@ collections:
               choose_url: true
               required: false
             - { label: "Discription", name: "description", widget: "text", required: false}
+        - label: 'Experience'
+          name: "experience"
+          widget: list
+          fields:
+            - { label: "Name", name: "name", widget: "string"}
+            - { label: "Description", name: "description", widget: "text"}
         - label: 'Skills'
           name: "skills"
           widget: list
           fields:
             - { label: "Name", name: "name", widget: "string"}
-            - { label: "Discription", name: "description", widget: "text"}
+            - { label: "Description", name: "description", widget: "text"}
         - label: 'Principles'
           name: "principles"
           widget: list
           fields:
             - { label: "Discription", name: "description", widget: "text"}
-            

@@ -1,179 +1,163 @@
 import { useRef } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import Markdown from "react-markdown";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import SkillItem from "../components/SkillItem";
 import Socials from "../components/Socials";
 import WorkCard from "../components/WorkCard";
-import BackgroundGradient from "../components/BackgroundGradient";
-import { useIsomorphicLayoutEffect } from "../utils";
-import { stagger } from "../animations";
-import Head from "next/head";
 import { attributes as data } from "../content/home.md";
-import Markdown from 'react-markdown'
-import Link from 'next/link';
 
 export default function Home() {
-  // Ref
-  const workRef = useRef();
   const aboutRef = useRef();
+  const experienceRef = useRef();
+  const workRef = useRef();
   const contactRef = useRef();
 
-  // Handling Scroll
-  const handleStartScroll = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-  const handleWorkScroll = () => {
-    window.scrollTo({
-      top: workRef.current.offsetTop - 50,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-  const handleAboutScroll = () => {
-    window.scrollTo({
-      top: aboutRef.current.offsetTop - 50,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-  const handleContactScroll = () => {
-    window.scrollTo({
-      top: contactRef.current.offsetTop,
-      left: 0,
-      behavior: "smooth",
-    });
+  const scrollTo = (ref) => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <div className="relative px-4 backgound-root">
-    <Head>
-      <link rel="icon" href="/favicon.ico" />
-      <meta property="og:title" content={data.title} />
-      <meta property="og:description" content={data.meta_description} />
-      <meta property="og:image" content={data.portrait} />
-      <meta name="description" content={data.meta_description} />
-      <title>{data.title}</title>
-    </Head>
-      <div className="relative max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
+    <div className="min-h-screen bg-paper text-ink">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={data.title} />
+        <meta property="og:description" content={data.meta_description} />
+        <meta property="og:image" content={data.portrait} />
+        <meta name="description" content={data.meta_description} />
+        <title>{data.title}</title>
+      </Head>
+
       <Header
-        handleStartScroll={handleStartScroll}
-        handleWorkScroll={handleWorkScroll}
-        handleAboutScroll={handleAboutScroll}
-        handleContactScroll={handleContactScroll}
+        handleStartScroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        handleAboutScroll={() => scrollTo(aboutRef)}
+        handleExperienceScroll={() => scrollTo(experienceRef)}
+        handleWorkScroll={() => scrollTo(workRef)}
+        handleContactScroll={() => scrollTo(contactRef)}
       />
-      <section className="-mt-28 pb-8 laptop:pb-28 h-screen flex flex-col justify-between align-baseline">
-        <h1
-          className="title-font text-center text-2xl tablet:text-6xl laptopl:text-8xl w-full"
-          style={{ marginTop: 'calc(50vh - 1.5em)' }}
-        >
-          <span className="block">
-            {data.header_first_line}
-          </span>
-          <span className="block">
-            {data.header_second_line}
-          </span>
-          <span className="block">
-            {data.header_third_line}
-          </span>
-        </h1>
-        <Socials />
-      </section>
-      <section className="pb-8 laptop:pb-28 p-2 laptop:p-0" ref={aboutRef}>
-        <h2 className="pb-8 title-font text-4xl text-bold">Обо мне</h2>
-        <div className="grid laptop:grid-cols-3 gap-4 tablet:p-10 tablet:pb-0">
-          <div className="text-l laptop:text-xl laptop:col-span-2 self-center">
-            <Markdown
-              components={{
-                ul(props) {
-                  const {node, ...rest} = props
-                  return <ul className="list-disc ml-8 mb-2" {...rest} />
-                },
-                p(props) {
-                  const {node, ...rest} = props
-                  return <p className="mb-2" {...rest} />
-                }
-              }}
-            >
-              {data.about}
-            </Markdown>
+
+      <main className="pt-16 tablet:pt-20">
+        <section className="mx-auto max-w-[1440px] px-5 py-14 tablet:px-10 tablet:py-20 laptop:px-16">
+          <div className="mx-auto max-w-6xl">
+            <p className="accent-text mb-7 text-center text-xs font-semibold uppercase tracking-[0.24em] tablet:text-sm">
+              Искусствоведение · Кураторство
+            </p>
+            <h1 className="title-font text-center text-[clamp(2.75rem,7.7vw,7.5rem)] font-light leading-[0.92] tracking-[-0.035em]">
+              <span className="accent-text mb-2 block italic">{data.header_first_line}</span>
+              <span className="block">{data.header_second_line}</span>
+              <span className="mt-2 block">{data.header_third_line}</span>
+            </h1>
           </div>
-          <img
-            alt={data.title}
-            className="w-full h-full max-h-[500px] object-contain row-start-1 laptop:row-start-auto"
-            src={data.portrait}
-          ></img>
-        </div>
-      </section>
-        <section className="pb-8 laptop:pb-28 p-2 laptop:p-0">
-          <h2 className="mb-8 title-font text-4xl text-bold">Принципы</h2>
-          <div className="flex justify-center items-center flex-wrap tablet:flex-nowrap tablet:m-10 gap-4">
-            {data.principles?.map((principle) => (
-              <p className="block w-full text-l laptop:text-xl tablet:text-center italic">{principle.description}</p>
-            ))}
+          <div className="mt-12 border-t border-ink/25 pt-5 tablet:mt-16">
+            <Socials />
           </div>
         </section>
-        <section className="pb-8 laptop:pb-28 p-2 laptop:p-0">
-          <h2 className="mb-8 title-font text-4xl text-bold">Навыки и опыт</h2>
-          <div className="flex flex-col tablet:m-10 gap-8">
-            {data.skills?.map((skill, index) => (
-              <SkillItem key={index} skill={skill} />
-            ))}
-          </div>
-        </section>
-        <section className="pb-8 laptop:pb-28 p-2 laptop:p-0" ref={workRef}>
-          <h2 className="mb-8 laptop:mb-16 title-font text-4xl laptop:text-6xl text-bold">Проекты</h2>
-          <h3 className="mb-4 laptop:mb-8  title-font text-2xl laptop:text-3xl text-bold">Искуствоведческая деятельность</h3>
-          <div className="mb-8 laptop:mb-16 grid grid-cols-1 tablet:grid-cols-2 gap-8">
-            {data.academy_projects?.map((project) => (
-              <Link 
-                key={project.slug} 
-                href={`/${project.slug}`}
-                className="flex items-center w-full text-l hover:-translate-y-1 transition-all"
-                target="_blank"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="flex-shrink-0 size-6 me-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-                {project.title}
-              </Link>
-            ))}
-          </div>
-          <h3 className="mb-4 laptop:mb-8 title-font text-2xl laptop:text-3xl text-bold">Творческая деятельность</h3>
-          <div className="grid grid-cols-1 laptop:grid-cols-2 gap-4">
-            <div className="flex flex-col gap-4">
-              {data.art_projects?.filter((_, index) => index % 2 === 0).map((project, index) => (
-                <WorkCard key={index * 2} project={project} />
-              ))}
-            </div> 
-            <div className="flex flex-col gap-4">
-              {data.art_projects?.filter((_, index) => index % 2 === 1).map((project, index) => (
-                <WorkCard key={index * 2 + 1} project={project} />
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="pb-8 p-2 laptop:p-0" ref={contactRef}>
-          <div>
-            <h2 className="mb-8 title-font text-4xl text-bold">Контакты</h2>
-            <div className="mb-8">
-              <p className="title-font text-3xl mob:text-5xl laptopl:text-7xl text-bold">
-                ДАВАЙТЕ
-                <br />
-                РАБОТАТЬ
-                <br />
-                ВМЕСТЕ
-              </p>
-              <div>
-                <Socials />
+
+        <section ref={aboutRef} className="scroll-mt-20 px-5 py-14 tablet:px-10 tablet:py-20 laptop:px-16">
+          <div className="mx-auto max-w-[1440px] pt-7">
+            <div className="grid gap-10 laptop:grid-cols-12 laptop:gap-8">
+              <div className="laptop:col-span-4">
+                <h2 className="section-title">Обо мне</h2>
+                <figure className="mt-7 max-w-md overflow-hidden bg-white p-3">
+                  <img
+                    alt="Мария Зинина-Хализова"
+                    className="aspect-[4/5] w-full object-cover object-top grayscale-[12%]"
+                    src={data.portrait}
+                  />
+                </figure>
+              </div>
+              <div className="laptop:col-span-7 laptop:col-start-6">
+                <div className="about-copy max-w-3xl text-lg leading-relaxed tablet:text-xl">
+                  <Markdown>{data.about}</Markdown>
+                </div>
+                <div className="mt-9">
+                  <h2 className="section-title mb-4">Принципы работы</h2>
+                  <div className="divide-y divide-ink/20 border-y border-ink/20">
+                    {data.principles?.map((principle, index) => (
+                      <div key={index} className="grid gap-3 py-4 tablet:grid-cols-[2.5rem_1fr]">
+                        <span className="accent-text title-font text-lg italic">0{index + 1}</span>
+                        <p className="text-base leading-relaxed text-ink/80 tablet:text-lg">{principle.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
-      </div>
-      <BackgroundGradient/>
+
+        <section ref={experienceRef} className="dark-surface scroll-mt-20 bg-ink px-5 py-14 text-paper tablet:px-10 tablet:py-20 laptop:px-16">
+          <div className="mx-auto grid max-w-[1440px] gap-8 laptop:grid-cols-2">
+            <div className="border-t border-paper/30 pt-6">
+              <h2 className="section-title mb-5">Опыт</h2>
+              <div className="divide-y divide-paper/20 border-b border-paper/20">
+                {data.experience?.map((item, index) => (
+                  <SkillItem key={index} skill={item} index={index} dark />
+                ))}
+              </div>
+            </div>
+            <div className="border-t border-paper/30 pt-6">
+              <h2 className="section-title mb-5">Навыки</h2>
+              <div className="divide-y divide-paper/20 border-b border-paper/20">
+                {data.skills?.map((skill, index) => (
+                  <SkillItem key={index} skill={skill} index={index} dark />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" ref={workRef} className="scroll-mt-20 px-5 py-14 tablet:px-10 tablet:py-20 laptop:px-16">
+          <div className="mx-auto max-w-[1440px] border-t border-ink/25 pt-7">
+            <div className="grid gap-8 desktop:grid-cols-12">
+              <h2 className="section-title desktop:col-span-4">Исследования</h2>
+              <div className="min-w-0 border-t border-ink/30 desktop:col-span-8">
+                {data.academy_projects?.map((project, index) => (
+                  <Link
+                    key={project.slug}
+                    href={`/${project.slug}`}
+                    className="group grid gap-3 border-b border-ink/30 py-5 transition-colors hover:text-accent tablet:grid-cols-[2.5rem_1fr_auto] tablet:items-start"
+                  >
+                    <span className="accent-text title-font text-lg italic">0{index + 1}</span>
+                    <span>
+                      <span className="block text-2xl font-bold leading-tight tablet:text-3xl">{project.title}</span>
+                      {project.description && (
+                        <span className="mt-2 block max-w-2xl text-sm leading-relaxed text-ink/60 tablet:text-base">{project.description}</span>
+                      )}
+                    </span>
+                    <span className="flex items-center gap-3">
+                      {project.file && (
+                        <span title="К исследованию прикреплён файл" aria-label="К исследованию прикреплён файл" className="text-ink/50 group-hover:text-accent">
+                          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-5 w-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 3.75H7.5A2.25 2.25 0 0 0 5.25 6v12A2.25 2.25 0 0 0 7.5 20.25h9A2.25 2.25 0 0 0 18.75 18V8.25L14.25 3.75Z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 3.75v4.5h4.5M9 14.25h6M12 11.25v6" />
+                          </svg>
+                        </span>
+                      )}
+                      <span aria-hidden="true" className="text-xl transition-transform group-hover:translate-x-1">↗</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-16 tablet:mt-20">
+              <div className="mb-7 border-b border-ink/30 pb-3">
+                <h2 className="section-title">Творческая практика</h2>
+              </div>
+              <div className="grid grid-cols-1 gap-x-8 gap-y-10 tablet:grid-cols-2 laptop:gap-x-12">
+                {data.art_projects?.map((project, index) => (
+                  <WorkCard key={index} project={project} index={index} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <Footer ref={contactRef} />
     </div>
   );
 }

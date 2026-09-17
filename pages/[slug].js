@@ -1,160 +1,106 @@
-import { useRouter } from "next/router";
-import Header from "/components/Header";
-import Socials from "/components/Socials";
-import { attributes as homeData } from "/content/home.md";
-import Markdown from 'react-markdown';
-import rehypeRaw from "rehype-raw";
 import Head from "next/head";
-import BackgroundGradient from "/components/BackgroundGradient";
+import Link from "next/link";
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { attributes as homeData } from "../content/home.md";
 
-export default function ProjectPage() {
-  const router = useRouter();
-  const { slug } = router.query;
-
-  // Находим проект по slug
-  const project = homeData.academy_projects?.find(p => p.slug === slug);
-
-  // Если проект не найден или данные еще не загружены
+export default function ProjectPage({ project }) {
   if (!project) {
-    return <div>Проект не найден</div>;
+    return <div className="min-h-screen bg-paper p-8 text-ink">Проект не найден</div>;
   }
 
-  // Функции для скролла (аналогичные index.js)
-  const handleStartScroll = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+  const handleContactScroll = () => {
+    document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleContactScroll = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
+  const hasText = typeof project.text === "string" && project.text.trim().length > 0;
 
   return (
-    <div className="relative px-4">
+    <div className="min-h-screen bg-paper text-ink">
       <Head>
-        <link rel="icon" href="/favicon.ico"/>
-        <meta name="description" content={project.meta_description || homeData.meta_description}></meta>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content={project.meta_description || homeData.meta_description} />
+        <meta property="og:title" content={project.title} />
+        <meta property="og:description" content={project.meta_description || homeData.meta_description} />
         <title>{project.title || homeData.title}</title>
       </Head>
-      <div className="max-w-7xl mx-8 tablet:mx-16 laptopl:mx-auto mb-8">
-        <Header
-          handleStartScroll={handleStartScroll}
-          handleContactScroll={handleContactScroll}
-          isHomePage={false} // Добавьте этот пропс в Header компонент
-        />
-        
-        <section className="mt-16 mb-16">
-          <div className="mb-8">
-            <h1 className="title-font text-3xl tablet:text-5xl mb-4">
-              {project.title}
-            </h1>
-            {project.description && (
-              <p className="text-xl text-white">
-                {project.description}
-              </p>
+
+      <Header
+        isHomePage={false}
+        handleStartScroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        handleContactScroll={handleContactScroll}
+      />
+
+      <main className="pt-16 tablet:pt-20">
+        <header className="px-5 pb-10 pt-9 tablet:px-10 tablet:pb-14 tablet:pt-12 laptop:px-16">
+          <div className="mx-auto max-w-[1440px]">
+            <Link href="/#work" className="group mb-10 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/50 transition-colors hover:text-accent">
+              <span aria-hidden="true" className="transition-transform group-hover:-translate-x-1">←</span>
+              Все проекты
+            </Link>
+            <div className="grid gap-8 laptop:grid-cols-12 laptop:items-end">
+              <div className="laptop:col-span-9">
+                <p className="accent-text mb-4 text-xs font-semibold uppercase tracking-[0.22em]">Исследование</p>
+                <h1 className="max-w-6xl text-[clamp(1.5rem,4vw,4rem)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+                  {project.title}
+                </h1>
+              </div>
+              {project.description && (
+                <p className="border-l border-accent pl-5 text-base leading-relaxed text-ink/60 laptop:col-span-3">
+                  {project.description}
+                </p>
+              )}
+            </div>
+            {project.file && (
+              <a
+                href={project.file}
+                download
+                className="mt-8 inline-flex items-center gap-3 border border-ink/30 bg-white px-5 py-3 text-sm font-bold transition-colors hover:border-accent hover:text-accent"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 3.75H7.5A2.25 2.25 0 0 0 5.25 6v12A2.25 2.25 0 0 0 7.5 20.25h9A2.25 2.25 0 0 0 18.75 18V8.25L14.25 3.75Z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 3.75v4.5h4.5M12 11.25v6m0 0-2.5-2.5M12 17.25l2.5-2.5" />
+                </svg>
+                Скачать файл исследования
+              </a>
             )}
           </div>
+        </header>
 
-          {project.image && (
-            <div className="mb-8 flex justify-items-center">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full max-h-96 object-contain rounded-3xl overflow-hidden"
-              />
-            </div>
-          )}
-          <hr className="mb-4"></hr>
-          <div className="prose prose-lg max-w-none dark:prose-invert tablet:px-28 desktop:px-36 break-words">
-            <Markdown
-              rehypePlugins={[rehypeRaw]}
-              components={{
-                ul(props) {
-                  const {node, ...rest} = props
-                  return <ul className="list-disc ml-8 mb-4" {...rest} />
-                },
-                ol(props) {
-                  const {node, ...rest} = props
-                  return <ol className="list-decimal ml-8 mb-4" {...rest} />
-                },
-                p(props) {
-                  const {node, ...rest} = props
-                  return <p className="mb-4" {...rest} />
-                },
-                h1(props) {
-                  const {node, ...rest} = props
-                  return <h2 className="text-2xl font-bold mb-4 mt-8" {...rest} />
-                },
-                h2(props) {
-                  const {node, ...rest} = props
-                  return <h3 className="text-xl font-bold mb-3 mt-6" {...rest} />
-                },
-                h3(props) {
-                  const {node, ...rest} = props
-                  return <h4 className="text-l font-bold mb-3 mt-6" {...rest} />
-                }
-              }}
-            >
-              {project.text}
-            </Markdown>
+        {project.image && (
+          <div className="px-5 tablet:px-10 laptop:px-16">
+            <figure className="mx-auto max-w-[1440px] bg-white p-5 tablet:p-10">
+              <img src={project.image} alt={project.title} className="mx-auto max-h-[70vh] w-full object-contain" />
+            </figure>
           </div>
-        </section>
+        )}
 
-        <section className="p-2 laptop:p-0">
-          <div>
-            <h2 className="mb-8 title-font text-4xl text-bold">Контакты</h2>
-            <div className="mb-8">
-              <p className="title-font text-3xl mob:text-5xl laptopl:text-7xl text-bold">
-                ДАВАЙТЕ
-                <br />
-                РАБОТАТЬ
-                <br />
-                ВМЕСТЕ
-              </p>
-              <div>
-                <Socials />
-              </div>
+        {hasText && (
+          <section className="px-5 py-12 tablet:px-10 tablet:py-16 laptop:px-16">
+            <div className="mx-auto grid max-w-[1440px] gap-10 laptop:grid-cols-12">
+              <article className="article-body min-w-0 laptop:col-span-7 laptop:col-start-5">
+                <Markdown rehypePlugins={[rehypeRaw]}>{project.text}</Markdown>
+              </article>
             </div>
-          </div>
-        </section>
-      </div>
-      <BackgroundGradient/>
+          </section>
+        )}
+      </main>
+      <Footer />
     </div>
   );
 }
 
-// Генерируем статические пути во время сборки
 export async function getStaticPaths() {
-  const { attributes: data } = require('/content/home.md');
-  
-  // Получаем все slugs из академических проектов
-  const paths = data.academy_projects?.map((project) => ({
+  const paths = homeData.academy_projects?.map((project) => ({
     params: { slug: project.slug },
   })) || [];
 
-  return {
-    paths,
-    fallback: false, // false означает, что несуществующие пути вернут 404
-  };
+  return { paths, fallback: false };
 }
 
-// Получаем данные для каждого пути
 export async function getStaticProps({ params }) {
-  const { attributes: data } = require('/content/home.md');
-  
-  // Находим проект по slug
-  const project = data.academy_projects?.find(p => p.slug === params.slug);
-
-  return {
-    props: {
-      project: project || null,
-    },
-  };
+  const project = homeData.academy_projects?.find((item) => item.slug === params.slug);
+  return { props: { project: project || null } };
 }
