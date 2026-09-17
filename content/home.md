@@ -302,7 +302,21 @@ academy_projects:
       «Искушение Евы душем». Исследование темы женской сексуальности, табу и
       патриархальных норм в современной живописи.
     image: img/искушение-евы.webp
+  - slug: videnie-ponomarya-tarasiya
+    image: img/videnie-ponomarya-tarasiya.webp
+    title: Курсовая работа «Анализ образа Великого Новгорода в иконах “Видение
+      пономаря Тарасия”»
+    meta_description: Исследование иконы «Видение пономаря Тарасия» и её списков
+      XVI–XVII веков. Анализ исторического облика Великого Новгорода,
+      архитектуры и новгородской иконописи.
+    description: Исследование иконы «Видение пономаря Тарасия» и её списков XVI–XVII
+      веков. Анализ исторического облика Великого Новгорода, архитектуры и
+      новгородской иконописи.
+    file: /files/kursovaya_pro_videnia_ponomarya_tarasia.docx
 art_projects:
+  - title: «Ручной фонарь»
+    description: 2026, холст, масло
+    image: img/ruchnoy_fonary.webp
   - title: «Ну пока»
     description: 2025, холст, масло
     image: img/art4.webp
