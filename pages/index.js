@@ -44,7 +44,7 @@ export default function Home() {
             <p className="accent-text mb-7 text-center text-xs font-semibold uppercase tracking-[0.24em] tablet:text-sm">
               Искусствоведение · Кураторство
             </p>
-            <h1 className="title-font text-center text-[clamp(2.75rem,7.7vw,7.5rem)] font-light leading-[0.92] tracking-[-0.035em]">
+            <h1 className="title-font text-center text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-[0.92] tracking-[-0.035em]">
               <span className="accent-text mb-2 block italic">{data.header_first_line}</span>
               <span className="block">{data.header_second_line}</span>
               <span className="mt-2 block">{data.header_third_line}</span>
