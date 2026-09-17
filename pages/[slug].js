@@ -70,7 +70,7 @@ export default function ProjectPage({ project }) {
         </header>
 
         {project.image && (
-          <div className="px-5 tablet:px-10 laptop:px-16">
+          <div className="px-5 tablet:px-10 laptop:px-16 mb-10">
             <figure className="mx-auto max-w-[1440px] bg-white p-5 tablet:p-10">
               <img src={project.image} alt={project.title} className="mx-auto max-h-[70vh] w-full object-contain" />
             </figure>
