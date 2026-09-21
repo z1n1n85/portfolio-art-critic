@@ -80,7 +80,7 @@ export default function ProjectPage({ project }) {
         {hasText && (
           <section className="px-5 py-12 tablet:px-10 tablet:py-16 laptop:px-16">
             <div className="mx-auto grid max-w-[1440px] gap-10 laptop:grid-cols-12">
-              <article className="article-body min-w-0 laptop:col-span-7 laptop:col-start-5">
+              <article className="article-body min-w-0 laptop:col-span-7 laptop:col-start-5 break-words">
                 <Markdown rehypePlugins={[rehypeRaw]}>{project.text}</Markdown>
               </article>
             </div>
