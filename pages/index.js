@@ -41,9 +41,6 @@ export default function Home() {
       <main className="pt-16 tablet:pt-20">
         <section className="mx-auto max-w-[1440px] px-5 py-14 tablet:px-10 tablet:py-20 laptop:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="accent-text mb-7 text-center text-xs font-semibold uppercase tracking-[0.24em] tablet:text-sm">
-              Искусствоведение · Кураторство
-            </p>
             <h1 className="title-font text-center text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-[0.92] tracking-[-0.035em]">
               <span className="accent-text mb-2 block italic">{data.header_first_line}</span>
               <span className="block">{data.header_second_line}</span>
