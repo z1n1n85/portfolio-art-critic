@@ -65,6 +65,13 @@ collections:
           fields:
             - { label: "Name", name: "name", widget: "string"}
             - { label: "Description", name: "description", widget: "text"}
+        - label: 'Образование'
+          name: "education"
+          widget: list
+          required: false
+          fields:
+            - { label: "Учебное заведение", name: "name", widget: "string"}
+            - { label: "Описание", name: "description", widget: "text"}
         - label: 'Skills'
           name: "skills"
           widget: list

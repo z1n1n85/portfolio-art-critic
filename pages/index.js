@@ -94,6 +94,16 @@ export default function Home() {
                   <SkillItem key={index} skill={item} index={index} dark />
                 ))}
               </div>
+              {data.education?.length > 0 && (
+                <div className="mt-9">
+                  <h2 className="section-title mb-5">Образование</h2>
+                  <div className="divide-y divide-paper/20 border-b border-paper/20">
+                    {data.education.map((item, index) => (
+                      <SkillItem key={index} skill={item} index={index} dark />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="border-t border-paper/30 pt-6">
               <h2 className="section-title mb-5">Навыки</h2>
