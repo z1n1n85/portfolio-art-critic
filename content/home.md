@@ -314,6 +314,15 @@ art_projects:
   - title: «Натюрморт с яблоками»
     description: 2022, холст, масло
     image: img/art3.webp
+  - title: «Сладость»
+    image: img/img_5221.webp
+    description: 2026, бумага, акварель, линогравюра
+  - title: «Гаттамелата»
+    image: img/img_5227.webp
+    description: 2024, бумага, карандаш
+  - title: «“Юдифь, отсекающая голову Олоферна” Караваджо. Копия»
+    description: 2024, бумага, темпера
+    image: img/img_5228.webp
 experience:
   - name: 2024. Музей искусства Санкт-Петербурга XX–XXI веков
     description: Проведение авторской обзорной экскурсии по экспозиции выставок
